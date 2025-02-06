@@ -13,14 +13,16 @@
             height: 100vh;
             margin: 0;
         }
+
         .heart {
             position: absolute;
             width: 50px;
             height: 50px;
             background-color: pink;
             transform: rotate(-45deg);
-            animation: float 10s infinite ease-in-out; /* Aumento da duração */
+            animation: float 10s infinite ease-in-out;
         }
+
         .heart::before,
         .heart::after {
             content: "";
@@ -30,21 +32,24 @@
             background-color: pink;
             border-radius: 50%;
         }
+
         .heart::before {
             top: -25px;
             left: 0;
         }
+
         .heart::after {
             left: 25px;
             top: 0;
         }
+
         .photo-heart {
             position: absolute;
             width: 150px;
             height: 150px;
             background-size: cover;
             background-position: center;
-            animation: float 10s infinite ease-in-out; /* Aumento da duração */
+            animation: float 10s infinite ease-in-out;
             mask:
             radial-gradient(at 70% 31%,#000 29%,#0000 30%),
             radial-gradient(at 30% 31%,#000 29%,#0000 30%),
@@ -60,6 +65,31 @@
                 transform: translateY(-100vh) rotate(-45deg);
                 opacity: 0;
             }
+        }
+
+        /* Estilo para o contêiner centralizado */
+        .container-texto {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8); /* Cor de fundo suave e opaca */
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .container-texto h1 {
+            color: #d43f67; /* Cor harmônica (rosada) */
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .container-texto p {
+            color: #d43f67; /* Mesma cor do título, para consistência */
+            font-size: 1.2em;
         }
     </style>
 </head>
@@ -108,10 +138,18 @@
                 }
                 element.style.left = Math.random() * 100 + "vw";
                 element.style.top = Math.random() * 100 + "vh";
-                // Aumentando a duração da animação para torná-la mais lenta
-                element.style.animationDuration = (Math.random() * 5 + 7) + "s"; // Agora varia de 7 a 12 segundos
+                element.style.animationDuration = (Math.random() * 5 + 7) + "s";
                 document.body.appendChild(element);
             }
+
+            // Adicionando o contêiner centralizado com texto
+            const containerTexto = document.createElement('div');
+            containerTexto.className = 'container-texto';
+            containerTexto.innerHTML = `
+                <h1>Para Meu Amor 💖</h1>
+                <p>Eu te amo mais a cada dia, e não vejo a hora de viver mais momentos juntos! 💕</p>
+            `;
+            document.body.appendChild(containerTexto);
         });
     </script>
 </body>
