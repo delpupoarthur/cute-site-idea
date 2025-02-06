@@ -70,7 +70,7 @@
         }
 
         .container-texto {
-            position: fixed;
+            position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -92,6 +92,35 @@
         .container-texto p {
             color: #d43f67;
             font-size: 1.2em;
+        }
+
+        .btn-custom {
+            width: 200px;
+            height: 60px;
+            font-size: 1.2em;
+            margin: 10px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            line-height: 60px;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+
+        .btn-maior {
+            background-color: #ff4d4d;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2; /* Garante que esse botão ficará sempre por cima */
+        }
+
+        .btn-menor {
+            background-color: #333;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1; /* Coloca o botão "Nhe" abaixo do botão "Sim" */
         }
     </style>
 </head>
@@ -148,9 +177,26 @@
             containerTexto.className = 'container-texto';
             containerTexto.innerHTML = `
                 <h1><i class="fas fa-heart"></i> Para Meu Amor 💖</h1>
-                <p><i class="fas fa-star"></i> Eu te amo mais a cada dia, e não vejo a hora de viver mais momentos juntos! 💕</p>
+                <p><i class="fas fa-star"></i> Paloma, você está pronta para desvendar esse mistério cheio de carinho e surpresas?</p>
+                <button id="btn-caca" class="btn-custom btn-maior">Sim, estou pronta!</button>
+                <button id="btn-nhe" class="btn-custom btn-menor">Nhe, melhor deixar.</button>
             `;
             document.body.appendChild(containerTexto);
+
+            const btnCaca = document.getElementById("btn-caca");
+            const btnNhe = document.getElementById("btn-nhe");
+
+            let tamanhoBotao = 1; // Inicializa o tamanho do botão como 1
+
+            btnNhe.addEventListener("click", function() {
+                // Aumenta o botão "Sim, estou pronta!" e diminui o botão "Nhe"
+                tamanhoBotao += 0.1; // Aumenta o tamanho a cada clique
+                btnCaca.style.transform = `scale(${tamanhoBotao})`;
+                btnCaca.style.fontSize = `${1.2 + (tamanhoBotao - 1) * 0.2}em`;
+                btnCaca.style.lineHeight = `${60 + (tamanhoBotao - 1) * 10}px`; // Ajusta a altura da linha ao aumentar o botão
+                btnNhe.style.transform = "scale(1)";
+                btnNhe.style.fontSize = "1.2em"; // Mantém o tamanho do botão "Nhe" fixo
+            });
         });
     </script>
 </body>
