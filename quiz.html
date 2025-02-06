@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Meu Amor 💖</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ff4d4d;
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            margin: 0;
+        }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            transform: rotate(-45deg);
+            animation: float 10s infinite ease-in-out; /* Aumento da duração */
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+        .heart::after {
+            left: 25px;
+            top: 0;
+        }
+        .photo-heart {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            animation: float 10s infinite ease-in-out; /* Aumento da duração */
+            mask:
+            radial-gradient(at 70% 31%,#000 29%,#0000 30%),
+            radial-gradient(at 30% 31%,#000 29%,#0000 30%),
+            linear-gradient(#000 0 0) bottom/100% 50% no-repeat;
+            clip-path: polygon(-41% 0,50% 91%, 141% 0);
+        }
+
+        @keyframes float {
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = [
+                "fotos/IMG_6720.jpeg",
+                "fotos/IMG_6872.jpeg",
+                "fotos/IMG_6918.jpeg",
+                "fotos/IMG_6967.jpeg",
+                "fotos/IMG_7037.jpeg",
+                "fotos/IMG_7053.jpeg",
+                "fotos/IMG_7135.jpeg",
+                "fotos/IMG_7159.jpeg",
+                "fotos/IMG_7160.jpeg",
+                "fotos/IMG_7652 Copy.jpeg",
+                "fotos/IMG_7879.jpeg",
+                "fotos/d0523b64-02e5-4097-a1d5-32b5333c1fa4.jpeg",
+                "fotos/foto1.jpeg",
+                "fotos/IMG_5017.jpeg",
+                "fotos/IMG_5019.jpeg",
+                "fotos/IMG_5026.jpeg",
+                "fotos/IMG_5126.jpeg",
+                "fotos/IMG_5269.jpeg"
+            ];
+            for (let i = 0; i < 30; i++) {
+                let element;
+                if (Math.random() > 0.5 && images.length > 0) {
+                    element = document.createElement("div");
+                    element.className = "photo-heart";
+                    element.style.backgroundImage = `url(${images[Math.floor(Math.random() * images.length)]})`;
+                } else {
+                    element = document.createElement("div");
+                    element.className = "heart";
+                }
+                element.style.left = Math.random() * 100 + "vw";
+                element.style.top = Math.random() * 100 + "vh";
+                // Aumentando a duração da animação para torná-la mais lenta
+                element.style.animationDuration = (Math.random() * 5 + 7) + "s"; // Agora varia de 7 a 12 segundos
+                document.body.appendChild(element);
+            }
+        });
+    </script>
+</body>
+</html>
