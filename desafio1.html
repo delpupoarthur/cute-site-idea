@@ -1,0 +1,205 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio Número 1</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="png-transparent-emoticon-smiley-emoji-heart-smiley-love-miscellaneous-heart (1).png" type="image/png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ff4d4d;
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container-texto {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            z-index: 10;
+        }
+
+        .container-texto h1 {
+            color: #d43f67;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .container-texto h2 {
+            color: #d43f67;
+            font-size: 1.8em;
+        }
+
+        .container-texto p {
+            color: #d43f67;
+            font-size: 1.2em;
+        }
+
+        .btn-custom {
+            width: 200px;
+            height: 60px;
+            font-size: 1.2em;
+            margin: 10px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            line-height: 60px;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+
+        .btn-correct {
+            background-color: #f44336; /* Verde para resposta certa */
+            color: white;
+        }
+
+        .btn-incorrect {
+            background-color: #f44336; /* Vermelho para resposta errada */
+            color: white;
+        }
+
+        /* Estilo da imagem de erro */
+        .image-erro {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            z-index: 20;
+            animation: erroAnimation 0.5s ease-in-out;
+        }
+
+        /* Animação para aparecer e desaparecer a imagem */
+        @keyframes erroAnimation {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            50% { transform: translate(-50%, -50%) scale(1.5); }
+            100% { transform: translate(-50%, -50%) scale(0); }
+        }
+
+        /* Estilo do texto de erro */
+        .texto-erro {
+            color: #f44336;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Estilo da nova tela de resposta certa */
+        .tela-certa {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .tela-certa img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-texto">
+        <h1><i class="fas fa-heart"></i> Desafio Número 1</h1>
+        <h2><i class="fas fa-heart"></i> Onde foi o nosso primeiro date?</h2>
+        <p><i class="fas fa-star"></i> Paloma, você está pronta para desvendar esse mistério cheio de carinho e surpresas?</p>
+
+        <!-- Botões com as opções -->
+        <button id="btn-yaki" class="btn-custom btn-correct">Yaki Way</button>
+        <button id="btn-lights" class="btn-custom btn-incorrect">The Lights</button>
+        <button id="btn-praia" class="btn-custom btn-incorrect">Praia</button>
+        <button id="btn-dbd" class="btn-custom btn-incorrect">Jogando DBD</button>
+
+        <!-- Imagem de erro -->
+        <img id="erro-imagem" class="image-erro" src="emoji-triste.png" alt="Emoji triste" />
+        
+        <!-- Texto de erro -->
+        <div id="erro-texto" class="texto-erro" style="display: none;">
+            Não nos conhece tão bem assim, né? 😅
+        </div>
+    </div>
+
+    <!-- Tela de resposta certa -->
+    <div id="tela-certa" class="tela-certa">
+        <h1>Você acertou!</h1>
+        <img src="emoji-feliz.png" alt="Emoji feliz" />
+        <p>Agora, vamos para a próxima etapa! 💖</p>
+    </div>
+
+    <!-- Som de erro -->
+    <audio id="erro-som" src="erro.mp3" preload="auto"></audio>
+
+    <script>
+        // Captura dos botões
+        const btnYaki = document.getElementById("btn-yaki");
+        const btnLights = document.getElementById("btn-lights");
+        const btnPraia = document.getElementById("btn-praia");
+        const btnDbd = document.getElementById("btn-dbd");
+
+        // Captura da imagem, texto e som de erro
+        const erroImagem = document.getElementById("erro-imagem");
+        const erroTexto = document.getElementById("erro-texto");
+        const erroSom = document.getElementById("erro-som");
+
+        // Captura da tela de resposta certa
+        const telaCerta = document.getElementById("tela-certa");
+
+        // Função para mostrar a imagem e o texto de erro
+        function mostrarErro() {
+            erroImagem.style.display = "block"; // Exibe a imagem
+            erroTexto.style.display = "block"; // Exibe o texto
+            erroSom.play(); // Toca o som
+            setTimeout(() => {
+                erroImagem.style.display = "none"; // Esconde a imagem após 5 segundos
+                erroTexto.style.display = "none"; // Esconde o texto após 5 segundos
+            }, 5000);
+        }
+
+        // Função para redirecionar para a tela de resposta certa
+        function mostrarTelaCerta() {
+            // Esconde a tela do desafio e mostra a tela de resposta certa
+            document.querySelector('.container-texto').style.display = 'none';
+            telaCerta.style.display = 'block';
+
+            // Após 5 segundos, redireciona para a próxima página (desafio2.html)
+            setTimeout(() => {
+                window.location.href = 'desafio2.html'; // Redireciona para a próxima página
+            }, 5000);
+        }
+
+        // Adiciona os eventos de clique nos botões
+        btnYaki.addEventListener('click', () => {
+            mostrarTelaCerta(); // Chama a função para mostrar a tela de resposta certa
+        });
+
+        btnLights.addEventListener('click', () => {
+            mostrarErro(); // Chama a função para mostrar erro
+        });
+
+        btnPraia.addEventListener('click', () => {
+            mostrarErro(); // Chama a função para mostrar erro
+        });
+
+        btnDbd.addEventListener('click', () => {
+            mostrarErro(); // Chama a função para mostrar erro
+        });
+    </script>
+</body>

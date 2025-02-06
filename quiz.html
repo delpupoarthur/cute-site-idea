@@ -175,7 +175,7 @@
 
             const containerTexto = document.createElement('div');
             containerTexto.className = 'container-texto';
-            containerTexto.innerHTML = `
+            containerTexto.innerHTML = `        
                 <h1><i class="fas fa-heart"></i> Para Meu Amor 💖</h1>
                 <p><i class="fas fa-star"></i> Paloma, você está pronta para desvendar esse mistério cheio de carinho e surpresas?</p>
                 <button id="btn-caca" class="btn-custom btn-maior">Sim, estou pronta!</button>
@@ -196,6 +196,11 @@
                 btnCaca.style.lineHeight = `${60 + (tamanhoBotao - 1) * 10}px`; // Ajusta a altura da linha ao aumentar o botão
                 btnNhe.style.transform = "scale(1)";
                 btnNhe.style.fontSize = "1.2em"; // Mantém o tamanho do botão "Nhe" fixo
+            });
+
+            // Ao clicar no botão "Sim, estou pronta!", redireciona para a nova página
+            btnCaca.addEventListener("click", function() {
+                window.location.href = "desafio1.html"; // Redireciona para a página 'desafio1.html'
             });
         });
     </script>
