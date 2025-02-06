@@ -84,11 +84,21 @@
                 "fotos/IMG_5019.jpeg",
                 "fotos/IMG_5026.jpeg",
                 "fotos/IMG_5126.jpeg",
-                "fotos/IMG_5269.jpeg"
+                "fotos/IMG_5269.jpeg",
+                "fotos/AFD9325E-E5EE-494F-96F9-4FF196071CBB.jpg",
+                "fotos/IMG_7384.jpg",
+                "fotos/IMG_7666.jpg",
+                "fotos/IMG_7762.jpg",
+                "fotos/IMG_7793.jpg",
+                "fotos/IMG_7839.jpg",
+                "fotos/IMG_7886.jpg",
+                "fotos/IMG_7887.jpg",
+                "fotos/IMG_7935.jpg",
+                "fotos/IMG_7962.jpg"
             ];
             for (let i = 0; i < 30; i++) {
                 let element;
-                if (Math.random() > 0.5 && images.length > 0) {
+                if (Math.random() > 0.7 && images.length > 0) {
                     element = document.createElement("div");
                     element.className = "photo-heart";
                     element.style.backgroundImage = `url(${images[Math.floor(Math.random() * images.length)]})`;
