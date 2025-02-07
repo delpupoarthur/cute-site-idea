@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafio do Sono</title>
+    <title>Desafio Número 1</title>
 
     <!-- Favicon -->
     <link rel="icon" href="png-transparent-emoticon-smiley-emoji-heart-smiley-love-miscellaneous-heart (1).png" type="image/png">
@@ -113,56 +113,20 @@
             width: 200px;
             height: 200px;
         }
-
-        .audio-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-evenly;
-            margin-top: 20px;
-        }
-
-        .audio-buttons button {
-            margin: 10px;
-            width: 200px;
-            height: 60px;
-        }
-
-        .esse-button {
-            margin-top: 15px;
-            background-color: #5cb85c;
-            color: white;
-        }
-
-        /* Ajuste para a estrutura 2x2 */
-        .row {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .col {
-            width: 48%;
-            margin-bottom: 15px;
-        }
     </style>
 </head>
 
 <body>
     <div class="container-texto">
-        <h1><i class="fas fa-heart"></i> Desafio do Sono</h1>
-        <h2><i class="fas fa-heart"></i> Qual desses ruídos se parecem mais a Paloma dormindo?</h2>
-        <p><i class="fas fa-star"></i> Escolha o som que mais se parece!</p>
+        <h1><i class="fas fa-heart"></i> Desafio Número 1</h1>
+        <h2><i class="fas fa-heart"></i> Qual dessas músicas você acha que representa mais nós dois?</h2>
+        <p><i class="fas fa-star"></i> Escolha a música que mais representa nossa história juntos!</p>
 
-        <!-- Estrutura 2x2 -->
-        <div class="audio-buttons row">
-            <div class="col">
-                <button id="btn-audio1" class="btn-custom" onclick="playAudio('audio1')">Tocar Áudio 1</button>
-                <button id="btn-esse1" class="btn-custom esse-button">Esse!</button>
-            </div>
-            <div class="col">
-                <button id="btn-audio2" class="btn-custom" onclick="playAudio('audio2')">Tocar Áudio 2</button>
-                <button id="btn-esse2" class="btn-custom esse-button">Esse!</button>
-            </div>
-        </div>
+        <!-- Botões com as opções -->
+        <button id="btn-lovebrain" class="btn-custom btn-correct">Love in the Brain</button>
+        <button id="btn-endbeginning" class="btn-custom btn-correct">End of Beginning</button>
+        <button id="btn-picture" class="btn-custom btn-correct">Picture You</button>
+        <button id="btn-kindwoman" class="btn-custom btn-correct">My Kind of Woman</button>
 
         <!-- Imagem de erro -->
         <img id="erro-imagem" class="image-erro" src="emoji-triste.png" alt="Emoji triste" />
@@ -175,22 +139,20 @@
 
     <!-- Tela de resposta certa -->
     <div id="tela-certa" class="tela-certa">
-        <h1>Você acertou!</h1>
-        <img src="emoji-feliz.jpg" alt="Emoji feliz" />
-        <p>Agora, vamos para a próxima etapa! 💖</p>
+        <h1>Essa é muito boa mesmo!</h1>
+        <img src="emoji-dancando.gif" alt="Emoji feliz" />
+        <p>Agora, vamos para a última etapa! 💖</p>
     </div>
 
-    <!-- Sons de erro e sucesso -->
+    <!-- Som de erro -->
     <audio id="erro-som" src="erro.mp3" preload="auto"></audio>
-    <audio id="audio1" src="desafio-audio\bebe-dormindo.mp3" preload="auto"></audio>
-    <audio id="audio2" src="desafio-audio\paloma-dormindo.mp3" preload="auto"></audio>
 
     <script>
         // Captura dos botões
-        const btnEsse1 = document.getElementById("btn-esse1");
-        const btnEsse2 = document.getElementById("btn-esse2");
-        const btnEsse3 = document.getElementById("btn-esse3");
-        const btnEsse4 = document.getElementById("btn-esse4");
+        const btnLoveBrain = document.getElementById("btn-lovebrain");
+        const btnEndBeginning = document.getElementById("btn-endbeginning");
+        const btnPicture = document.getElementById("btn-picture");
+        const btnKindWoman = document.getElementById("btn-kindwoman");
 
         // Captura da imagem, texto e som de erro
         const erroImagem = document.getElementById("erro-imagem");
@@ -199,15 +161,6 @@
 
         // Captura da tela de resposta certa
         const telaCerta = document.getElementById("tela-certa");
-
-        // A referência ao áudio correto
-        const audioCorreto = document.getElementById("audio2"); // Supondo que o áudio 2 seja o correto
-
-        // Função para tocar o áudio
-        function playAudio(audioId) {
-            const audio = document.getElementById(audioId);
-            audio.play();
-        }
 
         // Função para mostrar a imagem e o texto de erro
         function mostrarErro() {
@@ -228,25 +181,25 @@
 
             // Após 5 segundos, redireciona para a próxima página (desafio2.html)
             setTimeout(() => {
-                window.location.href = 'desafio4.html'; // Redireciona para a próxima página
+                window.location.href = 'creditos.html'; // Redireciona para a próxima página
             }, 5000);
         }
 
-        // Adiciona os eventos de clique nos botões "Esse!"
-        btnEsse1.addEventListener('click', () => {
-            if (audio1 === audioCorreto) {
-                mostrarTelaCerta();
-            } else {
-                mostrarErro();
-            }
+        // Adiciona os eventos de clique nos botões
+        btnLoveBrain.addEventListener('click', () => {
+            mostrarTelaCerta(); // Chama a função para mostrar a tela de resposta certa
         });
 
-        btnEsse2.addEventListener('click', () => {
-            if (audio2 === audioCorreto) {
-                mostrarTelaCerta();
-            } else {
-                mostrarErro();
-            }
+        btnEndBeginning.addEventListener('click', () => {
+            mostrarTelaCerta(); // Chama a função para mostrar a tela de resposta certa
+        });
+
+        btnPicture.addEventListener('click', () => {
+            mostrarTelaCerta(); // Chama a função para mostrar a tela de resposta certa
+        });
+
+        btnKindWoman.addEventListener('click', () => {
+            mostrarTelaCerta(); // Chama a função para mostrar a tela de resposta certa
         });
     </script>
 </body>

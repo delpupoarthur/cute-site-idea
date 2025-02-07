@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Última Etapa - Desafio</title>
+
+    <link rel="icon" href="png-transparent-emoticon-smiley-emoji-heart-smiley-love-miscellaneous-heart (1).png" type="image/png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000; /* Fundo totalmente preto */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .topo {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #000; /* Fundo totalmente opaco */
+            padding: 20px;
+            color: white;
+            font-size: 2.5em;
+            font-family: 'Arial', sans-serif;
+            z-index: 2; /* Garante que o topo fique na frente */
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro atrás do texto */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .container h1 {
+            font-size: 2.5em;
+            color: #fff;
+        }
+
+        .container p {
+            font-size: 1.2em;
+            color: #fff;
+        }
+
+        /* Estilo dos créditos */
+        #créditos {
+            position: absolute;
+            top: 80%; /* Alterei para subir mais */
+            width: 100%;
+            color: white;
+            font-size: 2em;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            animation: rolar 25s linear infinite; /* Acelerei a animação */
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 1; /* Garante que os créditos fiquem na frente do fundo */
+        }
+
+        /* Animação para os créditos */
+        @keyframes rolar {
+            0% {
+                transform: translateY(100%) rotateX(20deg);
+            }
+            100% {
+                transform: translateY(-100%) rotateX(20deg);
+            }
+        }
+
+        /* Efeito de corações voando */
+        .coracao {
+            position: absolute;
+            font-size: 2em;
+            animation: voar 10s infinite;
+            opacity: 0.8;
+            z-index: 2; /* Garante que os corações fiquem na frente */
+        }
+
+        @keyframes voar {
+            0% {
+                bottom: -50px;
+                left: random(0, 100%);
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                bottom: 100vh;
+                transform: scale(1.5);
+                opacity: 1;
+            }
+            100% {
+                bottom: -50px;
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .coracao:nth-child(odd) {
+            animation-duration: 12s;
+            animation-delay: random(0, 5s);
+        }
+
+        .coracao:nth-child(even) {
+            animation-duration: 10s;
+            animation-delay: random(0, 3s);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topo">
+        Última Etapa - O Desafio Final!<br>
+        Agora, a última surpresa para você! 
+    </div>
+
+    <div id="créditos">
+        <p>
+            Meu amor,<br><br>
+
+            No fim deste desafio, quero te dizer algumas coisas<br>
+            você é a pessoa mais incrível que já conheci! Em tão pouco tempo<br>
+            você conquistou um cantinho imenso no meu coração, e sou muito grato por isso.<br><br>
+
+            Obrigado por ser tão maravilhosa e por me fazer tão feliz! Eu te amo muito.<br><br>
+
+            Quero também que saiba que, embora às vezes as coisas possam parecer difíceis –<br>
+            com os sufocos do TCC, trabalho e outros desafios da vida –, eu estarei sempre ao seu lado,<br>
+            pronto para te apoiar e te ajudar no que for preciso. Pode contar comigo para tudo.<br><br>
+
+            Espero de coração que você tenha gostado deste desafio, que foi feito com tanto carinho e<br>
+            amor para você.<br><br>
+
+            E lembre-se sempre dessas três coisas:<br>
+            Eu estou aqui<br>
+            Eu vou sempre te esperar<br>
+            Eu te amo mais que tudo<br>
+            <br><br>
+            Com todo o meu amor,<br>
+            Arthur Delpupo
+        </p>
+    </div>
+
+    <div class="coracao" style="left: 10%;">❤️</div>
+    <div class="coracao" style="left: 30%;"></div>
+    <div class="coracao" style="left: 50%;"> </div>
+    <div class="coracao" style="left: 70%;"></div>
+    <div class="coracao" style="left: 90%;"></div>
+
+    <div class="coracao" style="left: 15%;">❤️</div>
+    <div class="coracao" style="left: 35%;"></div>
+    <div class="coracao" style="left: 55%;"></div>
+    <div class="coracao" style="left: 75%;"></div>
+    <div class="coracao" style="left: 95%;"></div>
+
+</body>
+</html>
