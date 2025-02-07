@@ -113,20 +113,56 @@
             width: 200px;
             height: 200px;
         }
+
+        .audio-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+
+        .audio-buttons button {
+            margin: 10px;
+            width: 200px;
+            height: 60px;
+        }
+
+        .esse-button {
+            margin-top: 15px;
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        /* Ajuste para a estrutura 2x2 */
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .col {
+            width: 48%;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container-texto">
         <h1><i class="fas fa-heart"></i> Desafio Número 1</h1>
-        <h2><i class="fas fa-heart"></i> Onde foi o nosso primeiro date?</h2>
-        <p><i class="fas fa-star"></i> Paloma, você está pronta para desvendar esse mistério cheio de carinho e surpresas?</p>
+        <h2><i class="fas fa-heart"></i> Qual desses ruídos se parecem mais a Paloma dormindo?</h2>
+        <p><i class="fas fa-star"></i> Escolha o som que mais se parece!</p>
 
-        <!-- Botões com as opções -->
-        <button id="btn-yaki" class="btn-custom btn-correct">Yaki Way</button>
-        <button id="btn-lights" class="btn-custom btn-incorrect">The Lights</button>
-        <button id="btn-praia" class="btn-custom btn-incorrect">Praia</button>
-        <button id="btn-dbd" class="btn-custom btn-incorrect">Jogando DBD</button>
+        <!-- Estrutura 2x2 -->
+        <div class="audio-buttons row">
+            <div class="col">
+                <button id="btn-audio1" class="btn-custom" onclick="playAudio('audio1')">Tocar Áudio 1</button>
+                <button id="btn-esse1" class="btn-custom esse-button">Esse!</button>
+            </div>
+            <div class="col">
+                <button id="btn-audio2" class="btn-custom" onclick="playAudio('audio2')">Tocar Áudio 2</button>
+                <button id="btn-esse2" class="btn-custom esse-button">Esse!</button>
+            </div>
+        </div>
 
         <!-- Imagem de erro -->
         <img id="erro-imagem" class="image-erro" src="emoji-triste.png" alt="Emoji triste" />
@@ -144,15 +180,17 @@
         <p>Agora, vamos para a próxima etapa! 💖</p>
     </div>
 
-    <!-- Som de erro -->
+    <!-- Sons de erro e sucesso -->
     <audio id="erro-som" src="erro.mp3" preload="auto"></audio>
+    <audio id="audio1" src="desafio-audio\bebe-dormindo.mp3" preload="auto"></audio>
+    <audio id="audio2" src="desafio-audio\paloma-dormindo.mp3" preload="auto"></audio>
 
     <script>
         // Captura dos botões
-        const btnYaki = document.getElementById("btn-yaki");
-        const btnLights = document.getElementById("btn-lights");
-        const btnPraia = document.getElementById("btn-praia");
-        const btnDbd = document.getElementById("btn-dbd");
+        const btnEsse1 = document.getElementById("btn-esse1");
+        const btnEsse2 = document.getElementById("btn-esse2");
+        const btnEsse3 = document.getElementById("btn-esse3");
+        const btnEsse4 = document.getElementById("btn-esse4");
 
         // Captura da imagem, texto e som de erro
         const erroImagem = document.getElementById("erro-imagem");
@@ -161,6 +199,15 @@
 
         // Captura da tela de resposta certa
         const telaCerta = document.getElementById("tela-certa");
+
+        // A referência ao áudio correto
+        const audioCorreto = document.getElementById("audio2"); // Supondo que o áudio 2 seja o correto
+
+        // Função para tocar o áudio
+        function playAudio(audioId) {
+            const audio = document.getElementById(audioId);
+            audio.play();
+        }
 
         // Função para mostrar a imagem e o texto de erro
         function mostrarErro() {
@@ -185,21 +232,21 @@
             }, 5000);
         }
 
-        // Adiciona os eventos de clique nos botões
-        btnYaki.addEventListener('click', () => {
-            mostrarTelaCerta(); // Chama a função para mostrar a tela de resposta certa
+        // Adiciona os eventos de clique nos botões "Esse!"
+        btnEsse1.addEventListener('click', () => {
+            if (audio1 === audioCorreto) {
+                mostrarTelaCerta();
+            } else {
+                mostrarErro();
+            }
         });
 
-        btnLights.addEventListener('click', () => {
-            mostrarErro(); // Chama a função para mostrar erro
-        });
-
-        btnPraia.addEventListener('click', () => {
-            mostrarErro(); // Chama a função para mostrar erro
-        });
-
-        btnDbd.addEventListener('click', () => {
-            mostrarErro(); // Chama a função para mostrar erro
+        btnEsse2.addEventListener('click', () => {
+            if (audio2 === audioCorreto) {
+                mostrarTelaCerta();
+            } else {
+                mostrarErro();
+            }
         });
     </script>
 </body>

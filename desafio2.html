@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio da Lanterna</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            height: 100vh;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Camada escura cobrindo tudo */
+        .mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            pointer-events: none;
+            mask-image: radial-gradient(circle 80px at 50% 50%, rgba(0,0,0,0) 10%, black 90%);
+            -webkit-mask-image: radial-gradient(circle 80px at 50% 50%, rgba(0,0,0,0) 10%, black 90%);
+            transition: mask-image 0.1s, -webkit-mask-image 0.1s;
+        }
+
+        .hidden-image {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Texto na parte superior da tela */
+        #central-text {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            text-align: center;
+            opacity: 0.8;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        /* Imagem substituindo o botão (tamanho reduzido) */
+        #next-image {
+            position: fixed;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25px; /* Reduzido para 100px */
+            height: auto;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="mask" id="mask"></div>
+    
+    <!-- Imagens falsas espalhadas -->
+    <img src="tela-lanterna/emoji-detetive.jpg" class="hidden-image" style="top: 30%; left: 15%;" id="img1">
+    <img src="tela-lanterna/hello-hitty-putona.jpg" class="hidden-image" style="top: 60%; left: 65%;" id="img2">
+    <img src="tela-lanterna/loguinho.JPEG" class="hidden-image" style="top: 40%; left: 80%;" id="img3">
+    <img src="tela-lanterna/arthur-mergulhador.jpg" class="hidden-image" style="top: 70%; left: 30%;" id="img4">
+    
+    <!-- Texto na parte superior -->
+    <div id="central-text">
+        Essa é a vida de Arthur sem a Paloma, ajude-o a encontrar sua namorada.
+    </div>
+
+    <!-- Imagem substituindo o botão -->
+    <img src="tela-lanterna/achou.JPEG" id="next-image" alt="Próxima Fase" onclick="window.location.href = 'desafio3.html';">
+    
+    <script>
+        const mask = document.getElementById("mask");
+        const nextImage = document.getElementById("next-image");
+        const hiddenImages = document.querySelectorAll(".hidden-image");
+
+        document.addEventListener("mousemove", (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+
+            mask.style.maskImage = `radial-gradient(circle 80px at ${x}px ${y}px, rgba(0,0,0,0) 10%, black 90%)`;
+            mask.style.webkitMaskImage = `radial-gradient(circle 80px at ${x}px ${y}px, rgba(0,0,0,0) 10%, black 90%)`;
+
+            // Revelar imagens ao passar o mouse por cima
+            hiddenImages.forEach((image) => {
+                const rect = image.getBoundingClientRect();
+                const radius = 80; // Ajusta o raio de detecção para ser um pouco maior que a imagem
+
+                if (
+                    x > rect.left - radius &&
+                    x < rect.right + radius &&
+                    y > rect.top - radius &&
+                    y < rect.bottom + radius
+                ) {
+                    image.style.opacity = "1";
+                } else {
+                    image.style.opacity = "0";
+                }
+            });
+
+            // Verifica se o cursor está próximo da imagem que leva para a próxima fase
+            const rectNextImage = nextImage.getBoundingClientRect();
+            const radius = 80; // Ajusta o raio de detecção para a imagem
+
+            if (
+                x > rectNextImage.left - radius &&
+                x < rectNextImage.right + radius &&
+                y > rectNextImage.top - radius &&
+                y < rectNextImage.bottom + radius
+            ) {
+                nextImage.style.opacity = "1";
+            } else {
+                nextImage.style.opacity = "0";
+            }
+        });
+    </script>
+</body>
+</html>
