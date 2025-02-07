@@ -220,17 +220,14 @@
             }, 5000);
         }
 
-        // Função para redirecionar para a tela de resposta certa
         function mostrarTelaCerta() {
-            // Esconde a tela do desafio e mostra a tela de resposta certa
-            document.querySelector('.container-texto').style.display = 'none';
-            telaCerta.style.display = 'block';
+    // Esconde a tela do desafio e mostra a tela de resposta certa
+    document.querySelector('.container-texto').style.display = 'none';
+    telaCerta.style.display = 'block';
 
-            // Após 5 segundos, redireciona para a próxima página (desafio2.html)
-            setTimeout(() => {
-                window.location.href = 'desafio4.html'; // Redireciona para a próxima página
-            }, 5000);
-        }
+    // Redireciona imediatamente para a próxima página (desafio4.html)
+    window.location.href = 'desafio4.html';
+}
 
         // Adiciona os eventos de clique nos botões "Esse!"
         btnEsse1.addEventListener('click', () => {
